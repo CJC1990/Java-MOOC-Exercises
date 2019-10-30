@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,6 +6,16 @@ public class MoreThanOnce {
 
     public static boolean moreThanOnce(ArrayList<Integer> list, int searched) {
         // write your code here
+        int count = 0;
+        for (Integer integer : list) {
+            if (integer == searched) {
+                count++;
+                if (count >= 2) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -15,8 +26,8 @@ public class MoreThanOnce {
         list.add(2);
         list.add(7);
         list.add(2);
-        
-        System.out.println("Type a number: ");
+
+        System.out.print("Type a number: ");
         int number = Integer.parseInt(reader.nextLine());
         if (moreThanOnce(list, number)) {
             System.out.println(number + " appears more than once.");
