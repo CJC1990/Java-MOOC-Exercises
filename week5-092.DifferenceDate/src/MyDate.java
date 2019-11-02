@@ -1,4 +1,6 @@
+
 public class MyDate {
+
     private int day;
     private int month;
     private int year;
@@ -28,6 +30,27 @@ public class MyDate {
         }
 
         return false;
+    }
+
+    public int differenceInYears(MyDate comparedDate) {
+        
+        if(this.earlier(comparedDate)){
+            return comparedDate.differenceInYears(this);
+        }
+
+        int diffInYears = Math.abs(this.year - comparedDate.year);
+
+        if (comparedDate.month > this.month) {
+            diffInYears--;
+        }
+        if (comparedDate.month == this.month) {
+            if (comparedDate.day > this.day) {
+                diffInYears--;
+            }
+        }
+
+        return diffInYears;
+
     }
 
 }

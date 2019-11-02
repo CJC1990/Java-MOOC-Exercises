@@ -25,7 +25,7 @@ public class Counter {
         return this.counter;
     }
     
-    // The given Model Solution to this exercise is definitely better than my own answer!
+    // The given Model Solution to this exercise is probably better than my own answer.
     // However, mine still passes 100%.
     
     public void increase(){
@@ -33,10 +33,6 @@ public class Counter {
     }
     
     public void decrease(){
-        if(check && this.value() > 0){
-            this.counter--;
-            return;
-        }
         if(check && this.value() == 0){
             return;
         }

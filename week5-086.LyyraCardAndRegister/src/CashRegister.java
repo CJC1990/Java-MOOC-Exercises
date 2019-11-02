@@ -7,6 +7,9 @@ public class CashRegister {
 
     public CashRegister() {
         // at start the register has 1000 euros 
+        this.cashInRegister = 1000;
+        this.economicalSold = 0;
+        this.gourmetSold = 0;
     }
 
     public double payEconomical(double cashGiven) {
@@ -15,8 +18,13 @@ public class CashRegister {
         //    the price of lunch is added to register
         //    the amount of sold lunch is incremented by one
         //    method returns cashGiven - lunch price 
-        // if not enough money given, all is returned and nothing else happens        
-        return -1;
+        // if not enough money given, all is returned and nothing else happens
+        if(cashGiven >= 2.5){
+            this.cashInRegister += 2.5;
+            this.economicalSold++;
+            return cashGiven - 2.5;
+        }
+        return cashGiven;
     }
 
     public double payGourmet(double cashGiven) {
@@ -26,7 +34,37 @@ public class CashRegister {
         //    the amount of sold lunch is incremented by one
         //    method returns cashGiven - lunch price 
         // if not enough money given, all is returned and nothing else happens
-        return -1;
+        if(cashGiven >= 4.0){
+            this.cashInRegister += 4.0;
+            this.gourmetSold++;
+            return cashGiven - 4.0;
+        }
+        return cashGiven;
+    }
+    
+    public boolean payEconomical(LyyraCard card){
+        if(card.balance() >= 2.5){
+            card.pay(2.5);
+            this.economicalSold++;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean payGourmet(LyyraCard card){
+        if(card.balance() >= 4.0){
+            card.pay(4.0);
+            this.gourmetSold++;
+            return true;
+        }
+        return false;
+    }
+    
+    public void loadMoneyToCard(LyyraCard card, double sum){
+        if(sum > 0){
+            card.loadMoney(sum);
+            this.cashInRegister += sum;
+        }
     }
 
 
