@@ -1,4 +1,7 @@
 
+import java.util.Calendar;
+
+
 public class MyDate {
 
     private int day;
@@ -36,9 +39,28 @@ public class MyDate {
      * In assignment 92 method differneceInYears was added to MyDate 
      * Copy the method here since it eases this assignment considerably.
      */
-    public int differneceInYears(MyDate compared) {
-        return -99;
+    public int differenceInYears(MyDate comparedDate) {
+        
+        if(this.earlier(comparedDate)){
+            return comparedDate.differenceInYears(this);
+        }
+
+        int diffInYears = Math.abs(this.year - comparedDate.year);
+
+        if (comparedDate.month > this.month) {
+            diffInYears--;
+        }
+        if (comparedDate.month == this.month) {
+            if (comparedDate.day > this.day) {
+                diffInYears--;
+            }
+        }
+
+        return diffInYears;
+
     }
+    
+    
 
   
 }
