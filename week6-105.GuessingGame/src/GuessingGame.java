@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class GuessingGame {
 
     private Scanner reader;
+    private int average;
 
     public GuessingGame() {
         // use only this scanner, othervise the tests do not work
@@ -11,12 +12,30 @@ public class GuessingGame {
 
     public void play(int lowerLimit, int upperLimit) {
         instructions(lowerLimit, upperLimit);
-
         // write the guessing logic here
+        while(lowerLimit < upperLimit){
+            average = this.average(lowerLimit, upperLimit);
+            System.out.println("Average: " +average+ " lowerLimit: " +lowerLimit+ " upperLimit: " +upperLimit);
+            
+            if(isGreaterThan(average)){
+                lowerLimit = average+1; 
+            }else{
+                upperLimit = average;
+            }
+        }
+        System.out.println("The number you're thinking of is " + upperLimit);
 
     }
 
     // implement here the methods isGreaterThan and average
+    public boolean isGreaterThan(int value){
+        System.out.println("Is your number greater than " +value+ "? (y/n) ");
+        return reader.nextLine().equals("y") ? true : false;
+    }
+    
+    public int average(int firstNumber, int secondNumber){
+        return (firstNumber + secondNumber) / 2;
+    }
 
     public void instructions(int lowerLimit, int upperLimit) {
         int maxQuestions = howManyTimesHalvable(upperLimit - lowerLimit);
